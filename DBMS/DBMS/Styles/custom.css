@@ -1,0 +1,79 @@
+﻿@font-face {
+    src: url(../Fonts/Roboto-Black.ttf);
+    font-family: robotoBlack;
+}
+@font-face {
+    src: url(../Fonts/Roboto-Bold.ttf);
+    font-family: robotoBold;
+}
+@font-face {
+    src: url(../Fonts/Roboto-Light.ttf);
+    font-family: robotoLight;
+}
+@font-face {
+    src: url(../Fonts/Roboto-Medium.ttf);
+    font-family: robotoMedium;
+}
+@font-face {
+    src: url(../Fonts/Roboto-Regular.ttf);
+    font-family: robotoRegular;
+}
+@font-face {
+    src: url(../Fonts/Roboto-Thin.ttf);
+    font-family: robotoThin;
+}
+
+.navbar {
+    background-image: url("../Images/nav-bar-bg.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 155px;
+    max-height: 175px;
+}
+
+.main-bg {
+    background-image: url('../Images/main-bg.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 650px;
+    max-height: 700px;
+    border: 12px solid white;
+}
+
+div div ul li .btn {
+    font-family:robotoMedium;
+}
+li h1 {
+    font-family:robotoBold;
+    font-size:50px;
+}
+li h2 {
+    font-family: robotoBold;
+    font-size: 35px;
+}
+li h3 {
+    font-size:30px;
+}
+
+ul li {
+    color: #4881b9;
+    font-family: robotoLight;
+}
+li a {
+    color: #4881b9;
+}
+
+.app-logo {
+    width: 175px;
+}
+
+.logo {
+    width: 500px;
+    margin-left: 75px;
+}
+
+small {
+    font-family: robotoLight;
+    font-size: 115%;
+    color: white;
+}

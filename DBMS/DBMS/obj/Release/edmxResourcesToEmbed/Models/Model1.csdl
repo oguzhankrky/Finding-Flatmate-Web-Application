@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="DBMSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Adress">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="District" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Neighbourhood" Type="String" MaxLength="75" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="House_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="House" Relationship="Self.FK_Adress_House" FromRole="Adress" ToRole="House" />
+  </EntityType>
+  <EntityType Name="House">
+    <Key>
+      <PropertyRef Name="House_ID" />
+    </Key>
+    <Property Name="Publish_Date" Type="DateTime" Precision="3" />
+    <Property Name="House_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Price" Type="Int32" Nullable="false" />
+    <Property Name="Heating" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Num_Rooms" Type="Int32" />
+    <Property Name="Size" Type="Int32" />
+    <Property Name="Belongings" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Constraints" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Adress" Relationship="Self.FK_Adress_House" FromRole="House" ToRole="Adress" />
+    <NavigationProperty Name="Picture" Relationship="Self.FK_House_Picture" FromRole="House" ToRole="Picture" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Member_House" FromRole="House" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="Email" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Surname" Type="String" MaxLength="35" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Social_ID" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Member_Type" Type="Boolean" Nullable="false" />
+    <Property Name="Birthdate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Gender" Type="Boolean" Nullable="false" />
+    <Property Name="House_ID" Type="Int32" />
+    <Property Name="Seek_ID" Type="Int32" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Member_Index" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="M_Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="House" Relationship="Self.FK_Member_House" FromRole="Member" ToRole="House" />
+    <NavigationProperty Name="Phone" Relationship="Self.FK_Member_Phone" FromRole="Member" ToRole="Phone" />
+    <NavigationProperty Name="Seek" Relationship="Self.FK_Member_Seek" FromRole="Member" ToRole="Seek" />
+  </EntityType>
+  <EntityType Name="Phone">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Country_Code" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Phone_Number" Type="Int32" Nullable="false" />
+    <Property Name="Email" Type="String" MaxLength="60" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Member_Phone" FromRole="Phone" ToRole="Member" />
+  </EntityType>
+  <EntityType Name="Picture">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="Picture_Names" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture1" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="House_ID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="House" Relationship="Self.FK_House_Picture" FromRole="Picture" ToRole="House" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Request_ID" />
+    </Key>
+    <Property Name="Request_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Seeker_ID" Type="Int32" Nullable="false" />
+    <Property Name="Owner_ID" Type="Int32" Nullable="false" />
+    <Property Name="Ad_ID" Type="Int32" Nullable="false" />
+    <Property Name="Request_Date" Type="DateTime" Precision="3" />
+    <Property Name="Is_Accept" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Seek">
+    <Key>
+      <PropertyRef Name="Seek_ID" />
+    </Key>
+    <Property Name="Seek_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Budget_Min" Type="Int32" Nullable="false" />
+    <Property Name="Budget_Max" Type="Int32" Nullable="false" />
+    <Property Name="City" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="Constraints" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+    <Property Name="Neighbourhood" Type="String" MaxLength="75" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Member" Relationship="Self.FK_Member_Seek" FromRole="Seek" ToRole="Member" />
+  </EntityType>
+  <Association Name="FK_Adress_House">
+    <End Role="House" Type="Self.House" Multiplicity="1" />
+    <End Role="Adress" Type="Self.Adress" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="House_ID" />
+      </Principal>
+      <Dependent Role="Adress">
+        <PropertyRef Name="House_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_House_Picture">
+    <End Role="House" Type="Self.House" Multiplicity="1" />
+    <End Role="Picture" Type="Self.Picture" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="House_ID" />
+      </Principal>
+      <Dependent Role="Picture">
+        <PropertyRef Name="House_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_House">
+    <End Role="House" Type="Self.House" Multiplicity="0..1" />
+    <End Role="Member" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="House">
+        <PropertyRef Name="House_ID" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="House_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_Phone">
+    <End Role="Member" Type="Self.Member" Multiplicity="1" />
+    <End Role="Phone" Type="Self.Phone" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Member">
+        <PropertyRef Name="Email" />
+      </Principal>
+      <Dependent Role="Phone">
+        <PropertyRef Name="Email" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Member_Seek">
+    <End Role="Seek" Type="Self.Seek" Multiplicity="0..1" />
+    <End Role="Member" Type="Self.Member" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Seek">
+        <PropertyRef Name="Seek_ID" />
+      </Principal>
+      <Dependent Role="Member">
+        <PropertyRef Name="Seek_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="DBMSEntities2" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Adress" EntityType="Self.Adress" />
+    <EntitySet Name="House" EntityType="Self.House" />
+    <EntitySet Name="Member" EntityType="Self.Member" />
+    <EntitySet Name="Phone" EntityType="Self.Phone" />
+    <EntitySet Name="Picture" EntityType="Self.Picture" />
+    <EntitySet Name="Request" EntityType="Self.Request" />
+    <EntitySet Name="Seek" EntityType="Self.Seek" />
+    <AssociationSet Name="FK_Adress_House" Association="Self.FK_Adress_House">
+      <End Role="House" EntitySet="House" />
+      <End Role="Adress" EntitySet="Adress" />
+    </AssociationSet>
+    <AssociationSet Name="FK_House_Picture" Association="Self.FK_House_Picture">
+      <End Role="House" EntitySet="House" />
+      <End Role="Picture" EntitySet="Picture" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_House" Association="Self.FK_Member_House">
+      <End Role="House" EntitySet="House" />
+      <End Role="Member" EntitySet="Member" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_Phone" Association="Self.FK_Member_Phone">
+      <End Role="Member" EntitySet="Member" />
+      <End Role="Phone" EntitySet="Phone" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Member_Seek" Association="Self.FK_Member_Seek">
+      <End Role="Seek" EntitySet="Seek" />
+      <End Role="Member" EntitySet="Member" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

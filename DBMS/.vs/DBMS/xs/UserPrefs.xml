@@ -1,0 +1,51 @@
+﻿<Properties StartupConfiguration="{AD665425-829A-40CB-9A9C-3639C631AB17}|">
+  <MonoDevelop.Ide.ItemProperties.DBMS PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="DBMS/Views/PersonReview/PersonDetails.cshtml">
+    <Files>
+      <File FileName="DBMS/Controllers/HomePageController.cs" Line="21" Column="2" />
+      <File FileName="DBMS/Controllers/DenemeController.cs" Line="1" Column="1" />
+      <File FileName="DBMS/Controllers/HouseAdvertisementController.cs" Line="13" Column="1" />
+      <File FileName="DBMS/Controllers/ImageUploadController.cs" Line="102" Column="35" />
+      <File FileName="DBMS/Controllers/PersonReviewController.cs" Line="22" Column="8" />
+      <File FileName="DBMS/Controllers/RequestsController.cs" Line="52" Column="37" />
+      <File FileName="DBMS/Views/Deneme/Index.cshtml" Line="1" Column="1" />
+      <File FileName="DBMS/Views/HouseAdvertisement/HouseDetails.cshtml" Line="7" Column="2" />
+      <File FileName="DBMS/Views/ImageUpload/GetHouseInfo.cshtml" Line="65" Column="1" />
+      <File FileName="DBMS/Views/PersonReview/Index.cshtml" Line="1" Column="1" />
+      <File FileName="DBMS/Controllers/SingUpController.cs" Line="7" Column="1" />
+      <File FileName="DBMS/Views/SingUp/Kaydet.cshtml" Line="127" Column="1" />
+      <File FileName="DBMS/Views/SingUp/Singin.cshtml" Line="20" Column="3" />
+      <File FileName="DBMS/Views/SingUp/Profil.cshtml" Line="1" Column="1" />
+      <File FileName="DBMS/Views/PersonReview/PersonDetails.cshtml" Line="3" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="DBMS" expanded="True">
+            <Node name="DBMS" expanded="True">
+              <Node name="Controllers" expanded="True" />
+              <Node name="Fonts" expanded="True" />
+              <Node name="Models" expanded="True" />
+              <Node name="Properties" expanded="True" />
+              <Node name="Views" expanded="True">
+                <Node name="Deneme" expanded="True" />
+                <Node name="HouseAdvertisement" expanded="True" />
+                <Node name="ImageUpload" expanded="True" />
+                <Node name="PersonReview" expanded="True">
+                  <Node name="PersonDetails.cshtml" selected="True" />
+                </Node>
+                <Node name="SingUp" expanded="True" />
+              </Node>
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>

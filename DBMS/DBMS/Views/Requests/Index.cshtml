@@ -1,0 +1,76 @@
+﻿@using DBMS.Models
+@model List<Request>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mb-5">
+
+
+    <ul class="list-unstyled  mt-5 " style="justify-content: center; display: flex;">
+        <li class="m-4" style="display: inline; "><a role="button" class="btn btn-primary btn-lg mt-3" href="/Requests/Index/@ViewData["current_id"]">Incoming Requests</a></li>
+        <li class="m-4" style="display: inline; "><a role="button" class="btn btn-info btn-lg mt-3" href="/Requests/Index2/@ViewData["current_id"]">Outgoing Requests</a></li>
+    </ul>
+
+  
+    @foreach (var request in Model)
+    {
+        <div class="row border pt-3 mt-3 " style="background-color: @if (request.Is_Accept == null) {<text>#ffcc00</text>}
+                                                                     else if(request.Is_Accept == true) {<text>#99cc33</text>}
+                                                                     else {<text>#cc3300</text>}">
+            <div class="col d-inline-block">
+
+                <div class="carousel-item active form-group" method="post">
+                    <a class="btn" href="/PersonReview/PersonDetails/@request.Seeker_ID"> <img src="~/Images/facebookprofile.jpg" class="rounded" alt="home" width="300" height="200" /></a>
+                </div>
+
+            </div>
+
+            <div class="col mt-1 d-inline-block">
+                <div class=" pt-2" style="font-family:Roboto; font-size:25px;">A person sent a request to you! </div>
+                <div class=" pt-2">Request from: </div>
+                <div class=" pt-2">Request date: </div>
+                <div class=" pt-2">Status: </div>
+                @if (request.Is_Accept == null)
+                {
+                    <a role="button" class="btn btn-danger btn-lg mt-3" onclick="location.href='@Url.Action("Reject", "Requests")'">Reject @{TempData["req_id"] = request.Request_ID;}</a>
+
+                }
+                @{TempData.Keep();}
+            </div>
+
+
+            <div class="col mt-3 d-inline-block">
+                <div class=" pt-2" style="color:white">.</div>
+                <div class=" pt-2">@request.Seeker_ID</div>
+                <div class=" pt-2">@request.Request_Date</div>
+
+                @if (request.Is_Accept == null)
+                {
+                    <div class="pt-2">Waiting...</div>
+                }
+                else
+                {
+                    if (request.Is_Accept == true)
+                    {
+                        <div class="pt-2">Accepted</div>
+                    }
+                    else
+                    {
+                        <div class="pt-2">Rejected</div>
+                    }
+                }
+                @if (request.Is_Accept == null)
+                {
+                    <a role="button" class="btn btn-success btn-lg mt-3" onclick="location.href='@Url.Action("Accept", "Requests")'">Accept @{TempData["req_id"] = request.Request_ID;}</a>
+                }
+                @{TempData.Keep();}
+            </div>
+
+        </div>
+    }
+</div>
+
+

@@ -1,0 +1,95 @@
+﻿@using DBMS.Models
+@model List<House>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mb-5 " style="margin-top:30px">
+    <h1>House-Room-Flat Advertisements</h1>
+    @foreach (var house in Model)
+    {
+
+        DBMSEntities2 db = new DBMSEntities2();
+        var query6 = from a in db.Member
+                     where a.House_ID == house.House_ID
+                     select a;
+        Member mem = query6.FirstOrDefault();
+        if (mem == null) { continue; }
+        if (mem.Social_ID == Convert.ToInt32(TempData["owner_id"])) { continue; }
+        string gender;
+        if (mem.Gender == true)
+        { gender = "male"; }
+        else
+        { gender = "female"; }
+
+
+
+        <div class="row border mt-5">
+
+
+            <div class="col  h-50  d-inline-block">
+
+
+                @{
+                    
+                    var query = from a in db.Picture
+                                where a.unique_House == house.unique_House
+                                select a.Picture1;
+
+
+                    var result = query.FirstOrDefault();
+                    var base64 = Convert.ToBase64String(result);
+                    var imgsrc = string.Format("data:image/gid;base64,{0}", base64);
+                }
+                <a class="btn" href="/HouseAdvertisement/HouseDetails/@house.House_ID"> <img src='@imgsrc' class="rounded" alt="home" width="300" height="200" /></a>
+
+
+
+
+
+            </div>
+
+            <div class="col   h-50  d-inline-block">
+
+                <div class=" pt-4">Name : @mem.Name @mem.Surname</div>
+                <div class=" pt-4">Room Price : @house.Price</div>
+                <div class=" pt-4">Room Size  : @house.Size </div>
+                @if (TempData["id"] == "1")
+                {
+                    {
+
+                        var deneme = db.Request.SqlQuery("Select * from Request WHERE Seeker_ID = " + TempData["owner_id"] + " and Owner_ID = " + mem.Social_ID);
+                        if (!deneme.Any())
+                        {
+                            <a role="button" class="btn btn-success btn-lg mt-3" onclick="location.href='@Url.Action("SendRequest", "HouseAdvertisement", new {current_seeker = mem.Social_ID})'">
+                                Send Request
+                            </a>
+                        }
+                        else
+                        {
+                            <a role="button" class="btn btn-info btn-lg mt-3">
+                                The Request was sent!
+                            </a>
+                        }
+
+                    }
+                }
+
+            </div>
+
+            <div class="col   h-50  d-inline-block">
+
+                <div class=" pt-4">There is @house.Num_Rooms rooms in this house</div>
+                <div class=" pt-4">Heating : @house.Heating</div>
+                <div class=" pt-4">House owner gener : @gender</div>
+                <div class=" pt-4" style="color:white">.</div>
+
+            </div>
+
+        </div>
+    }
+
+</div>
+
+

@@ -1,0 +1,144 @@
+﻿@model DBMS.Models.House
+
+@{
+    ViewBag.Title = "GetHouseInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-row">
+        <div class="form-group col-md-6">
+
+        </div>
+        <h3>House Information</h3>
+
+    </div>
+    <div class="pt-3">
+        <div class="form-horizontal">
+
+
+
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <label for="">Price</label>
+                    <div class="form-group">
+
+
+                        @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", placeholder = "Price" } })
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+
+                </div>
+                <div class="form-group col-md-1">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="form-group">
+                        <label for="">Room Number</label>
+
+                        @Html.EditorFor(model => model.Num_Rooms, new { htmlAttributes = new { @class = "form-control", placeholder = "Rooms" } })
+                        @Html.ValidationMessageFor(model => model.Num_Rooms, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-3">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="form-group">
+                        <label for="">Room Size</label>
+
+                        @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control", placeholder = "Room Size" } })
+                        @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group col-md-1">
+
+                </div>
+                <div class="form-group col-md-3">
+                    <div class="form-group">
+                        <label for="">Heating</label>
+
+                        @Html.EditorFor(model => model.Heating, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Heating, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+                <div class="form-group col-md-3">
+
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+
+                </div>
+
+                <div class="form-group col-md-7">
+                    <div class="form-group">
+                        <label for="">Belongings</label>
+                        <div class="input-group">
+
+
+
+
+
+                            @Html.TextAreaFor(model => model.Belongings, new { @class = "form-control", style = "width: 400px;", type = "integer", placeholder = "Enter your home belongings " })
+                            @Html.ValidationMessageFor(model => model.Belongings, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-3">
+
+                </div>
+
+                <div class="form-group col-md-7">
+                    <div class="form-group">
+                        <label for="">Constraints and Home rules</label>
+                        <div class="input-group">
+
+
+
+
+
+                            @Html.TextAreaFor(model => model.Constraints, new { @class = "form-control", style = "width: 400px;", type = "integer", placeholder = "Home Constraints" })
+                            @Html.ValidationMessageFor(model => model.Constraints, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Create" class="btn btn-secondary" location.href='@Url.Action("GetAddressInfo","ImageUpload")' />
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+}
+
+

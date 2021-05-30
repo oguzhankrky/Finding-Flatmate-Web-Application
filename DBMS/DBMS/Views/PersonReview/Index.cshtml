@@ -1,0 +1,111 @@
+﻿@using DBMS.Models
+@model List<Member>
+
+@{
+    ViewBag.Title = "PersonRewiev";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container mb-5" style="margin-top:30px">
+    <h1>Person Rewiew</h1>
+
+        @foreach (var member in Model)
+        {
+
+            if (member.Social_ID == Convert.ToInt32(TempData["owner_id"])) { continue; }
+            if (!member.Member_Type) {
+    <div class="row border  mt-5">
+
+
+    <div class="col  h-50  d-inline-block">
+        <div id="demo3" class="carousel slide" data-ride="carousel">
+
+            <div class="carousel-inner">
+                <div class="carousel-item active form-group" method="post">
+                    @{
+                        DBMSEntities2 db = new DBMSEntities2();
+                var query = from a in db.Member
+                            where a.Social_ID == member.Social_ID
+                            select member.Member_picture;
+
+                var result = query.FirstOrDefault();
+
+                var base64 = Convert.ToBase64String(member.Member_picture);
+                var imgsrc = string.Format("data:image/gid;base64,{0}", base64);
+            }
+                    <a class="btn" href="/PersonReview/PersonDetails/@member.Social_ID"> <img src="@imgsrc" class="rounded" alt="home" width="300" height="200" /></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col   h-50  d-inline-block">
+
+        <div class=" pt-4">
+            Preference:
+
+            @if (@member.Member_Type)
+            {
+                <a>Looking for Flatmate </a>
+            }
+            else
+            {
+                <a>Looking for Home </a>
+            }
+
+        </div>
+        @if (TempData["id"] == "1")
+        {
+            {
+                
+                var deneme = db.Request.SqlQuery("Select * from Request WHERE Seeker_ID = " + TempData["owner_id"] + " and Owner_ID = " + member.Social_ID);
+                if (!deneme.Any())
+                {
+                    <a role="button" class="btn btn-success btn-lg mt-3" onclick="location.href='@Url.Action("SendRequest", "PersonReview",new {current_seeker = member.Social_ID})'">
+                        Send Request
+                       
+                    </a>
+                }
+                else
+                {
+                    <a role="button" class="btn btn-info btn-lg mt-3" >
+                        The Request was sent!
+                    </a>
+                }
+
+            }
+        }
+
+    </div>
+    @{TempData.Keep();}
+    <div class="col   h-50  d-inline-block">
+
+        <div class=" pt-4"><a>name : @member.Name</a></div>
+        <div class=" pt-4"><a>surname : @member.Surname</a></div>
+
+        <div class=" pt-4"><a>Birthdate : @member.Birthdate.Year</a></div>
+        <div class=" pt-4">
+            <a>
+                Gender:
+                @if (@member.Gender)
+                {
+                    <a>Man</a>
+                }
+                else
+        {
+                    <a>Women</a>
+                }
+            </a>
+        </div>
+
+    </div>
+
+
+
+</div>
+             }
+          }
+     
+
+</div>
+    

@@ -1,0 +1,47 @@
+﻿@using DBMS.Models
+<nav class="navbar navbar-expand-lg navbar-light">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+        <a class="mx-auto" href="#" style="width:425px" onclick="location.href='@Url.Action("../HomePage/Index")'"><img class="logo" src="~/Images/logo.png" /></a>
+        <ul class="navbar-nav mr-lg-auto ml-lg-auto ">
+
+            <li class="nav-item">
+                <a role="button" class="btn btn-primary btn-lg m-1" href="/Requests/Index/@TempData["owner_id"]">MY REQUESTS</a>
+                @if (Convert.ToInt32(TempData["type"]) == 1)
+                {
+                    DBMSEntities2 db = new DBMSEntities2();
+                    int id = Convert.ToInt32(TempData["owner_id"]);
+                    if (id != null)
+                    {
+                        Member mem = db.Member.FirstOrDefault(y => y.Social_ID == id);
+                        if (mem != null)
+                        {
+                            if (mem.House_ID == null)
+                            {
+                                <a role="button" style="color:white" class="btn btn-warning btn-lg m-1" href="/ImageUpload/GetHouseInfo">CREATE HOME AD</a>
+                            }
+
+                        }
+                    }
+                }
+
+
+                <a class="btn btn-info btn-lg m-3" href="/PersonReview/PersonDetails/ @TempData["membertemp.Social_ID"]">MY PROFILE </a>
+                <button type="button" class="btn btn-danger btn-lg m-1e" style="display: inline; " onclick="location.href='@Url.Action("Singin", "SingUp")'"> LOG OUT</button>
+                @{
+                    <p class=" text-capitalize ml-lg-5" style="color:Highlight; font-size:25px;"><b>@TempData["message"]</b></p>
+                    TempData.Keep();
+                }
+            </li>
+
+
+
+
+
+        </ul>
+    </div>
+
+</nav>
+

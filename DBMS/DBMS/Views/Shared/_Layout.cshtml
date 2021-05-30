@@ -1,0 +1,41 @@
+﻿
+@{
+    Layout = null;
+  
+}
+
+<!DOCTYPE html>
+
+<html>
+@Html.Partial("_Head")
+<body>
+
+
+
+
+    @{
+
+
+        if (TempData["Id"] == "1")
+        {
+            @Html.Partial("_Navbar2");
+        }
+        else if (TempData["Id"] == "0")
+        {
+            @Html.Partial("_Navbar");
+        }
+        TempData.Keep();
+    }
+
+
+
+
+    <div>
+        @RenderBody()
+    </div>
+
+    <script src="~/Scripts/jquery-3.0.0.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+</body>
+@Html.Partial("_Foot")
+</html>

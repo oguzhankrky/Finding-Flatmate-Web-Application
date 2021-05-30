@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DBMSModelStoreContainer" CdmEntityContainer="DBMSEntities2">
+    <EntitySetMapping Name="Adress">
+      <EntityTypeMapping TypeName="DBMSModel.Adress">
+        <MappingFragment StoreEntitySet="Adress">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="District" ColumnName="District" />
+          <ScalarProperty Name="Neighbourhood" ColumnName="Neighbourhood" />
+          <ScalarProperty Name="unique_House" ColumnName="unique_House" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="House">
+      <EntityTypeMapping TypeName="DBMSModel.House">
+        <MappingFragment StoreEntitySet="House">
+          <ScalarProperty Name="Publish_Date" ColumnName="Publish_Date" />
+          <ScalarProperty Name="House_ID" ColumnName="House_ID" />
+          <ScalarProperty Name="Price" ColumnName="Price" />
+          <ScalarProperty Name="Heating" ColumnName="Heating" />
+          <ScalarProperty Name="Num_Rooms" ColumnName="Num_Rooms" />
+          <ScalarProperty Name="Size" ColumnName="Size" />
+          <ScalarProperty Name="Belongings" ColumnName="Belongings" />
+          <ScalarProperty Name="Constraints" ColumnName="Constraints" />
+          <ScalarProperty Name="unique_House" ColumnName="unique_House" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Member">
+      <EntityTypeMapping TypeName="DBMSModel.Member">
+        <MappingFragment StoreEntitySet="Member">
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Social_ID" ColumnName="Social_ID" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Member_Type" ColumnName="Member_Type" />
+          <ScalarProperty Name="Birthdate" ColumnName="Birthdate" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="House_ID" ColumnName="House_ID" />
+          <ScalarProperty Name="Seek_ID" ColumnName="Seek_ID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Member_Index" ColumnName="Member_Index" />
+          <ScalarProperty Name="M_Phone" ColumnName="M_Phone" />
+          <ScalarProperty Name="Member_bio" ColumnName="Member_bio" />
+          <ScalarProperty Name="Member_picture" ColumnName="Member_picture" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Phone">
+      <EntityTypeMapping TypeName="DBMSModel.Phone">
+        <MappingFragment StoreEntitySet="Phone">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Country_Code" ColumnName="Country_Code" />
+          <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Picture">
+      <EntityTypeMapping TypeName="DBMSModel.Picture">
+        <MappingFragment StoreEntitySet="Picture">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Picture_Names" ColumnName="Picture_Names" />
+          <ScalarProperty Name="Picture1" ColumnName="Picture" />
+          <ScalarProperty Name="unique_House" ColumnName="unique_House" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Request">
+      <EntityTypeMapping TypeName="DBMSModel.Request">
+        <MappingFragment StoreEntitySet="Request">
+          <ScalarProperty Name="Request_ID" ColumnName="Request_ID" />
+          <ScalarProperty Name="Seeker_ID" ColumnName="Seeker_ID" />
+          <ScalarProperty Name="Owner_ID" ColumnName="Owner_ID" />
+          <ScalarProperty Name="Ad_ID" ColumnName="Ad_ID" />
+          <ScalarProperty Name="Request_Date" ColumnName="Request_Date" />
+          <ScalarProperty Name="Is_Accept" ColumnName="Is_Accept" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Seek">
+      <EntityTypeMapping TypeName="DBMSModel.Seek">
+        <MappingFragment StoreEntitySet="Seek">
+          <ScalarProperty Name="Seek_ID" ColumnName="Seek_ID" />
+          <ScalarProperty Name="Budget_Min" ColumnName="Budget_Min" />
+          <ScalarProperty Name="Budget_Max" ColumnName="Budget_Max" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Constraints" ColumnName="Constraints" />
+          <ScalarProperty Name="Neighbourhood" ColumnName="Neighbourhood" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

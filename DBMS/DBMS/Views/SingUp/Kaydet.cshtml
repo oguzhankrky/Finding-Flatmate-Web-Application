@@ -1,0 +1,237 @@
+﻿@model DBMS.Models.Member
+@{
+    ViewBag.Title = "Kaydet";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+@using (Html.BeginForm("Kaydet", "SingUp", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+<div class="pt-3" style="background-color: #d0e8f2">
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+
+        </div>
+        <div class="form-group col-md-3">
+            <label>Name</label>
+            <div class="input-group">
+
+                @Html.TextBoxFor(a => a.Name, new { @class = "form-control", placeholder = "Name" })
+
+            </div>
+            @Html.ValidationMessageFor(a => a.Name)
+        </div>
+
+        <div class="form-group col-md-3">
+            <label for="">Surname</label>
+            @Html.TextBoxFor(a => a.Surname, new { @class = "form-control", placeholder = "Surname" })
+            @Html.ValidationMessageFor(a => a.Surname)
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-3">
+        </div>
+        <div class="form-group col-md-3">
+            <div class="from-group">
+                <label for="">E-mail</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">✉</div>
+                    </div>
+                    @Html.TextBoxFor(a => a.Email, new { @class = "form-control", placeholder = "E-Mail" })
+
+                </div>
+                @Html.ValidationMessageFor(a => a.Email)
+            </div>
+
+        </div>
+        <div class="form-group col-md-3">
+            <div class="from-group">
+                <label for="">Password</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">🔑</div>
+                    </div>
+                    @Html.TextBoxFor(a => a.Password, new { @class = "form-control", type = "Password", placeholder = "Password" })
+
+                </div>
+            </div>
+            @Html.ValidationMessageFor(a => a.Password)
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+        </div>
+        <div class="form-group col-md-3">
+
+            <div class="from-group">
+                <label for="">Social ID</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">ID</div>
+                    </div>
+
+                    @Html.TextBoxFor(a => a.Social_ID, new { @class = "form-control", type = "integer", placeholder = "Social_ID" })
+
+
+                </div>
+            </div>
+
+        </div>
+        <div class="form-group col-md-3">
+            <label for="">Phone Number</label>
+            <div class="from-group">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <div class="input-group-text">📱</div>
+                    </div>
+                    @Html.TextBoxFor(a => a.M_Phone, new { @class = "form-control", type = "text", placeholder = "Phone Number" })
+                    <!-- <input id="Phone" type="text" class="form-control" name="Phone" placeholder="Phone Number" } }>  -->
+
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+        </div>
+        <div class="form-group col-md-3">
+            <div class="from-group">
+
+                @Html.LabelFor(a => a.Birthdate)
+                @Html.TextBoxFor(a => a.Birthdate, new { @class = "form-control", type = "date" })
+
+            </div>
+            @Html.ValidationMessageFor(a => a.Birthdate)
+        </div>
+    </div>
+    <div class="form-row">
+
+        <div class="form-group col-md-3"></div>
+        <div class="form-group col-md-6">
+            <div class="from-group">
+                <label for="">Personal Info</label>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text">About Member</span>
+                    </div>
+
+                    @Html.TextAreaFor(a => a.Member_bio, new { @class = "form-control", style = "width: 400px;", type = "integer", placeholder = "Something About You " })
+
+
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+
+
+
+
+        </div>
+        <div class="form-group col-md-3">
+
+            
+
+            @Html.ValidationSummary(true, "", new { @class = "text-danger", placeholder = "Picture" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Member_picture, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="ImageFile" id="ImageFile" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-3">
+
+
+
+
+        </div>
+        <div class="form-group col-md6">
+
+
+
+
+        </div>
+
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-5">
+
+
+
+
+        </div>
+
+
+
+        <div class="form-group col-md-5">
+            <label for="">Member Type </label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <label class="form-check-label">@Html.RadioButtonFor(a => a.Member_Type, true)</label> I am looking for flatemate
+
+
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">@Html.RadioButtonFor(a => a.Member_Type, false)</label> I am looking for home
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.ValidationMessageFor(a => a.Member_Type)
+    <div class="form-row">
+        <div class="form-group col-md-5">
+
+
+
+
+        </div>
+
+
+
+        <div class="form-group col-md-5">
+            <label for="">Gender </label>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <label class="form-check-label">@Html.RadioButtonFor(a => a.Gender, true)</label> Man
+
+
+                </div>
+                <div class="form-check">
+                    <label class="form-check-label">@Html.RadioButtonFor(a => a.Gender, false)</label>Woman
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+        </div>
+        <div class="form-group col-md-3">
+            <input type="submit" value="Create " class="btn btn-danger active  btn-lg" />
+
+        </div>
+
+
+    </div>
+
+</div>
+    }
+

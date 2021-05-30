@@ -1,0 +1,113 @@
+﻿@using DBMS.Models
+
+@model DBMS.Models.House
+@{
+    ViewBag.Title = "HouseDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container " style="margin-top:30px ">
+
+    <div class="row border mt-1">
+
+        <div class="col  h-50  d-inline-block">
+
+            @{
+                DBMSEntities2 db = new DBMSEntities2();
+                var query = from a in db.Picture
+                            where a.unique_House == Model.unique_House
+                            select a.Picture1;
+
+
+                var result = query.FirstOrDefault();
+                var base64 = Convert.ToBase64String(result);
+                var imgsrc = string.Format("data:image/gid;base64,{0}", base64);
+                int counter = -1;
+            }
+            <div id="demo" class="carousel slide" data-ride="carousel">
+
+                <div class="carousel-inner">
+                   
+
+                        @{counter++; }
+                        <div class="carousel-item @if(counter==0){<text>active</text>}">
+                           
+                            <img src="@imgsrc" class="rounded" alt="home" width="600" height="500" />
+                            <div class="carousel-caption">
+                            </div>
+                        </div>
+                    }
+                </div>
+
+                <a class="carousel-control-prev" href="#demo" data-slide="prev">
+                    <span class="carousel-control-prev-icon"></span>
+                </a>
+                <a class="carousel-control-next" href="#demo" data-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                </a>
+            </div>
+
+        </div>
+        <div class="col   h-50  d-inline-block">
+            @{
+                var query6 = from a in db.Member
+                             where a.House_ID == Model.House_ID
+                             select a;
+                Member mem = query6.FirstOrDefault();
+
+
+                string gender;
+                if (mem.Gender == true)
+                { gender = "male"; }
+                else
+                { gender = "female"; }
+            }
+            <h1>@mem.Name @mem.Surname</h1>
+
+            <div class="col   h-50  d-inline-block">
+
+                <div class=" pt-4">Birthdate : @mem.Birthdate.Day/@mem.Birthdate.Month/@mem.Birthdate.Year</div>
+                <div class=" pt-4">E-Mail : @mem.Email</div>
+                <div class=" pt-4">Phone : @mem.M_Phone</div>
+                <div class=" pt-4">House Owner Gender : @gender</div>
+
+                <div class=" pt-4">Room Price : @Model.Price</div>
+                <div class=" pt-4">Room Size  : @Model.Size</div>
+                <div class=" pt-4">There is @Model.Num_Rooms room in home </div>
+                <div class=" pt-4">Heating : @Model.Heating</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row border mt-5 jumbotron" style="        background-color: #A7A5A4;">
+
+
+        <div class="col  h-50  d-inline-block">
+
+            <h1> Member bio</h1>
+            <p style="width: 475px; word-wrap: break-word;">
+                @mem.Member_bio
+            </p>
+            
+
+
+        </div>
+        <div class="col  h-50  d-inline-block">
+
+            <h1>Home Belongings</h1>
+            <p style="width: 475px; word-wrap: break-word;">
+                @Model.Belongings
+            </p>
+            <h1>Constraints</h1>
+            <p style="width: 475px; word-wrap: break-word;">
+                @Model.Constraints
+            </p>
+
+        </div>
+
+    </div>
+</div>
+
+
+
